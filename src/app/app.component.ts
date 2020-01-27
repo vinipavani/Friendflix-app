@@ -20,6 +20,9 @@ export class AppComponent {
       title: 'List',
       url: '/list',
       icon: 'list',
+    },{
+      title:'Friendflix',
+      url: '/friendflix-home'    
     }
   ];
 
