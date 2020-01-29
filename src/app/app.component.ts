@@ -22,7 +22,10 @@ export class AppComponent {
       icon: 'list',
     },{
       title:'Friendflix',
-      url: '/friendflix-home'    
+      url: '/friendflix-home'
+    },{
+      title:'Series',
+      url: '/series'
     }
   ];
 

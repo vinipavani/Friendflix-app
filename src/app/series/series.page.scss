@@ -1,0 +1,18 @@
+.imagem{
+  display: flex;
+  width: 100%;
+  height: auto;
+  border: 0%;
+}
+.linha_do_titulo{
+  display: flex;
+  justify-content: space-between;
+}
+ion-chip{
+  background-color: #2a5aeb;
+  color:white;
+}
+ion-card-content{
+  display: flex;
+  justify-content: space-between;
+}

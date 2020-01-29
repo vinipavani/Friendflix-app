@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'friendflix-home',
     loadChildren: () => import('./friendflix-home/friendflix-home.module').then( m => m.FriendflixHomePageModule)
+  },
+  {
+    path: 'series',
+    loadChildren: () => import('./series/series.module').then( m => m.SeriesPageModule)
   }
 ];
 
