@@ -10,6 +10,8 @@
       <ion-card-title>{{post.nome_do_usuario}}</ion-card-title>
       <ion-card-subtitle>{{post.texto}}</ion-card-subtitle>
       <ion-icon name="star" color="{{likeColor(post.likes_e_dislikes.numeroDeLikes,post.likes_e_dislikes.numeroDeDislikes)}}"></ion-icon>
+      <ion-icon size="Large" name="thumbs-up" (click)="like()" color="primary">{{post.likes_e_dislikes.numeroDeLikes}}</ion-icon>
+      <ion-icon size="Large" name="thumbs-down" (click)="dislike()" color="secondary">{{post.likes_e_dislikes.numeroDeDislikes}}</ion-icon>
     </ion-card-header>
   </ion-card>
 </ion-content>

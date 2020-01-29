@@ -16,14 +16,14 @@ export class FriendflixHomePage implements OnInit {
       comentarios: 'papo reto guilherme briggs é brebo',
       anexo: File,
       likes_e_dislikes: {
-          numeroDeLikes: 36,
-          numeroDeDislikes: 7,
+          numeroDeLikes: 0,
+          numeroDeDislikes: 0,
       },
       denuncias: {
         homofobia: 0,
         misogenia: 0,
         racismo: 0,
-        fake_news: 2,
+        fake_news: 0,
       },
       
   }
@@ -38,8 +38,17 @@ export class FriendflixHomePage implements OnInit {
         return 'danger';
     }
   }
+  
+  like():number{
+    this.post.likes_e_dislikes.numeroDeLikes = this.post.likes_e_dislikes.numeroDeLikes + 1
+    return this.post.likes_e_dislikes.numeroDeLikes
+  }
+  dislike():number{
+    this.post.likes_e_dislikes.numeroDeDislikes = this.post.likes_e_dislikes.numeroDeDislikes + 1
+    return this.post.likes_e_dislikes.numeroDeDislikes
+  }
+  
   ngOnInit() {
-    this.likeColor(36, 7);
   }
 
 }
