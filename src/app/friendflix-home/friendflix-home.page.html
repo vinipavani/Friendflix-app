@@ -4,14 +4,14 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-card class="bem_vindo">
+  <ion-card class="bem_vindo" *ngFor="let post of posts">
     <ion-card-header>
-      <ion-card-title>{{post.nome_do_usuario}}</ion-card-title>
-      <ion-card-subtitle>{{post.texto}}</ion-card-subtitle>
+      <ng-template #show><ion-card-subtitle>{{post.texto}}</ion-card-subtitle></ng-template> 
+      <ion-card-title>{{post.nome_do_usuario}}</ion-card-title> 
+      <ion-title><ion-button class="botao" (click)="tiraAlerta(post)" class="alerta" *ngIf="post.spoiler;else show" color="danger">Alerta de spoiler!!!</ion-button></ion-title>
       <ion-icon name="star" color="{{StarColor(post.reactions.numeroDeLikes,post.reactions.numeroDeDislikes)}}"></ion-icon>
-      <ion-icon size="Large" name="thumbs-up" (click)="valida_like()" color="{{post.reactions.likeStatus ? 'primary':'medium'}}"></ion-icon>{{post.reactions.numeroDeLikes}}
-      <ion-icon size="Large" name="thumbs-down" (click)="valida_dislike()" color="{{post.reactions.dislikeStatus ? 'danger':'medium'}}"></ion-icon>{{post.reactions.numeroDeDislikes}}
-      <ion-title class="alerta" *ngIf="post.spoiler" color="danger">Alerta de spoiler!!!</ion-titlclass="e>
+      <ion-icon size="Large" name="thumbs-up" (click)="valida_like(post)" color="{{post.reactions.likeStatus ? 'primary':'medium'}}"></ion-icon>{{post.reactions.numeroDeLikes}}
+      <ion-icon size="Large" name="thumbs-down" (click)="valida_dislike(post)" color="{{post.reactions.dislikeStatus ? 'danger':'medium'}}"></ion-icon>{{post.reactions.numeroDeDislikes}}
     </ion-card-header>
   </ion-card>
 </ion-content>
