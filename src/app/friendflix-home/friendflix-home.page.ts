@@ -9,44 +9,75 @@ export class FriendflixHomePage implements OnInit {
 
   constructor() { }
 
-  post: object ={
+  post ={
       nome_do_usuario: 'Vinicius',
       foto_de_perfil: File,
       texto: 'aaaaa muito bom the witcher dublado pelo guilherme briggs',
       comentarios: 'papo reto guilherme briggs é brebo',
       anexo: File,
-      likes_e_dislikes: {
-          numeroDeLikes: 0,
-          numeroDeDislikes: 0,
+      spoiler: true,
+      reactions: {
+          numeroDeLikes: 21,
+          numeroDeDislikes: 7,
+          likeStatus: false,
+          dislikeStatus: false,
       },
       denuncias: {
         homofobia: 0,
         misogenia: 0,
         racismo: 0,
         fake_news: 0,
-      },
-      
-  }
-  likeColor(numeroDeLikes:number,numeroDeDislikes:number):string {
-    if (numeroDeLikes>numeroDeDislikes) {
-        return 'success';
-    }
-    else if (numeroDeLikes==numeroDeDislikes) {
-        return 'medium';
-    }
-    else {
-        return 'danger';
-    }
+      },    
   }
   
-  like():number{
-    this.post.likes_e_dislikes.numeroDeLikes = this.post.likes_e_dislikes.numeroDeLikes + 1
-    return this.post.likes_e_dislikes.numeroDeLikes
+  StarColor(numeroDeLikes:number,numeroDeDislikes:number):string {
+      if (numeroDeLikes>numeroDeDislikes) {
+          return 'success';
+      }
+      else if (numeroDeLikes==numeroDeDislikes) {
+          return 'medium';
+      }
+      else {
+          return 'danger';
+      }
   }
-  dislike():number{
-    this.post.likes_e_dislikes.numeroDeDislikes = this.post.likes_e_dislikes.numeroDeDislikes + 1
-    return this.post.likes_e_dislikes.numeroDeDislikes
+
+  valida_like():void{
+      if(this.post.reactions.dislikeStatus == true){
+        this.post.reactions.dislikeStatus = false;
+        this.post.reactions.likeStatus = true;
+        this.post.reactions.numeroDeDislikes -= 1;
+        this.post.reactions.numeroDeLikes += 1;
+      }
+      else if(this.post.reactions.likeStatus == false){
+          this.post.reactions.likeStatus = true;
+          this.post.reactions.numeroDeLikes += 1;
+      }    
+      else if(this.post.reactions.likeStatus == true){
+          this.post.reactions.likeStatus = false;
+          this.post.reactions.numeroDeLikes -= 1;
+      }
   }
+  valida_dislike():void{
+    if(this.post.reactions.likeStatus == true){
+      this.post.reactions.likeStatus = false;
+      this.post.reactions.dislikeStatus = true;
+      this.post.reactions.numeroDeLikes -= 1;
+      this.post.reactions.numeroDeDislikes += 1;
+    }
+    else if(this.post.reactions.dislikeStatus == false){
+        this.post.reactions.dislikeStatus = true;
+        this.post.reactions.numeroDeDislikes += 1;
+    }    
+    else if(this.post.reactions.dislikeStatus == true){
+        this.post.reactions.dislikeStatus = false;
+        this.post.reactions.numeroDeDislikes -= 1;
+    }    
+  }
+
+      
+  
+  
   
   ngOnInit() {
   }

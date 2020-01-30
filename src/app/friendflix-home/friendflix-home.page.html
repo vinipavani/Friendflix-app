@@ -3,15 +3,16 @@
     <ion-title>friendflix_home</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <ion-card class="bem_vindo">
     <ion-card-header>
       <ion-card-title>{{post.nome_do_usuario}}</ion-card-title>
       <ion-card-subtitle>{{post.texto}}</ion-card-subtitle>
-      <ion-icon name="star" color="{{likeColor(post.likes_e_dislikes.numeroDeLikes,post.likes_e_dislikes.numeroDeDislikes)}}"></ion-icon>
-      <ion-icon size="Large" name="thumbs-up" (click)="like()" color="primary">{{post.likes_e_dislikes.numeroDeLikes}}</ion-icon>
-      <ion-icon size="Large" name="thumbs-down" (click)="dislike()" color="secondary">{{post.likes_e_dislikes.numeroDeDislikes}}</ion-icon>
+      <ion-icon name="star" color="{{StarColor(post.reactions.numeroDeLikes,post.reactions.numeroDeDislikes)}}"></ion-icon>
+      <ion-icon size="Large" name="thumbs-up" (click)="valida_like()" color="{{post.reactions.likeStatus ? 'primary':'medium'}}"></ion-icon>{{post.reactions.numeroDeLikes}}
+      <ion-icon size="Large" name="thumbs-down" (click)="valida_dislike()" color="{{post.reactions.dislikeStatus ? 'danger':'medium'}}"></ion-icon>{{post.reactions.numeroDeDislikes}}
+      <ion-title class="alerta" *ngIf="post.spoiler" color="danger">Alerta de spoiler!!!</ion-titlclass="e>
     </ion-card-header>
   </ion-card>
 </ion-content>
+
