@@ -12,7 +12,7 @@ export class FriendflixHomePage implements OnInit {
   posts =[{
       nome_do_usuario: 'Vinicius',
       foto_de_perfil: File,
-      texto: 'aaaaa muito bom the witcher dublado pelo guilherme briggs',
+      texto: 'muito triste quando senhor white morre...',
       comentarios: 'papo reto guilherme briggs é brebo',
       anexo: File,
       spoiler: true,
@@ -29,7 +29,7 @@ export class FriendflixHomePage implements OnInit {
         fake_news: 0,
       },    
   },
-  { nome_do_usuario: 'Batata',
+  { nome_do_usuario: 'Uriel',
     foto_de_perfil: File,
     texto: 'Elementar meu caro watson.',
     comentarios: 'papo reto atuação do doutor estranho muito boa.',
@@ -45,57 +45,59 @@ export class FriendflixHomePage implements OnInit {
       homofobia: 0,
       misogenia: 0,
       racismo: 0,
-      fake_news: 0,
+      fake_news: 2,
     },    
 },]
-  
-  StarColor(numeroDeLikes:number,numeroDeDislikes:number):string {
-      if (numeroDeLikes>numeroDeDislikes) {
-          return 'success';
-      }
-      else if (numeroDeLikes==numeroDeDislikes) {
-          return 'medium';
-      }
-      else {
-          return 'danger';
-      }
-  }
 
-  valida_like(post):void{
-      if(post.reactions.dislikeStatus == true){
-          post.reactions.dislikeStatus = false;
-          post.reactions.likeStatus = true;
-          post.reactions.numeroDeDislikes -= 1;
-          post.reactions.numeroDeLikes += 1;
+StarColor(numeroDeLikes:number,numeroDeDislikes:number):string {
+    if (numeroDeLikes>numeroDeDislikes) {
+        return 'success';
+    }
+    else if (numeroDeLikes==numeroDeDislikes) {
+        return 'medium';
+    }
+    else {
+        return 'danger';
+    }
+}
+/*valida_like e valida_dislike são as funções responsáveis pelo sistema de interação like/dislike
+para garanti um bom funcionamento */
+valida_like(post):void{
+    if(post.reactions.dislikeStatus == true){
+        post.reactions.dislikeStatus = false;
+        post.reactions.likeStatus = true;
+        post.reactions.numeroDeDislikes -= 1;
+        post.reactions.numeroDeLikes += 1;
+    }
+    else if(post.reactions.likeStatus == false){
+        post.reactions.likeStatus = true;
+        post.reactions.numeroDeLikes += 1;
+    }    
+    else if(post.reactions.likeStatus == true){
+        post.reactions.likeStatus = false;
+        post.reactions.numeroDeLikes -= 1;
       }
-      else if(post.reactions.likeStatus == false){
-          post.reactions.likeStatus = true;
-          post.reactions.numeroDeLikes += 1;
-      }    
-      else if(post.reactions.likeStatus == true){
-          post.reactions.likeStatus = false;
-          post.reactions.numeroDeLikes -= 1;
-      }
-  }
-  valida_dislike(post):void{
-      if(post.reactions.likeStatus == true){
-          post.reactions.likeStatus = false;
-          post.reactions.dislikeStatus = true;
-          post.reactions.numeroDeLikes -= 1;
-          post.reactions.numeroDeDislikes += 1;
-      }
-      else if(post.reactions.dislikeStatus == false){
-          post.reactions.dislikeStatus = true;
-          post.reactions.numeroDeDislikes += 1;
-      }    
-      else if(post.reactions.dislikeStatus == true){
-          post.reactions.dislikeStatus = false;
-          post.reactions.numeroDeDislikes -= 1;
-      }    
-  }
-  tiraAlerta(post){
-      post.spoiler = false;
-  }
+}
+valida_dislike(post):void{
+    if(post.reactions.likeStatus == true){
+        post.reactions.likeStatus = false;
+        post.reactions.dislikeStatus = true;
+        post.reactions.numeroDeLikes -= 1;
+        post.reactions.numeroDeDislikes += 1;
+    }
+    else if(post.reactions.dislikeStatus == false){
+        post.reactions.dislikeStatus = true;
+        post.reactions.numeroDeDislikes += 1;
+    }    
+    else if(post.reactions.dislikeStatus == true){
+        post.reactions.dislikeStatus = false;
+        post.reactions.numeroDeDislikes -= 1;
+    }    
+}
+/*função responsável pela remoção do alerta de spoiler*/
+tiraAlerta(post){
+    post.spoiler = false;
+}
 
       
   
